@@ -23,25 +23,24 @@ public class ProduitServiceImp implements ProduitService{
     private ProduitRepository produitRepository;
 
     
-    @Override /*1- CREATE Produit paginable */
+    @Override /*1- CREATE Produit  */
     @Transactional
     public ProduitDto save(Produit produit) {
-        
-        return  DtoMapperProduct.builder().setProduit(produitRepository.save(produit)).build();
-    } /*1- END CREATE Produit paginable */
+        return DtoMapperProduct.builder().setProduit(produitRepository.save(produit)).build();
+    } /*1- END CREATE Produit */
     
     /*=======================================================*/
     
-    @Override /* 2.1- READ Produit paginable */
+    @Override /* 2.1- READ Produit */
     @Transactional(readOnly = true)
     public Page<ProduitDto> findAll(Pageable pageable) {
         Page<Produit> produitPage = produitRepository.findAll(pageable);
         return produitPage.map(u -> DtoMapperProduct.builder().setProduit(u).build());
-    } /* 2.1- END READ Produit paginable */
+    } /* 2.1- END READ Produit  */
 
     /*=======================================================*/
 
-    @Override /* 2.2- READ Produit paginable */
+    @Override /* 2.2- READ Produit  */
     public List<ProduitDto> findAll() {
 
 
@@ -52,12 +51,12 @@ public class ProduitServiceImp implements ProduitService{
                 .map(u -> DtoMapperProduct.builder().setProduit(u).build())
                 .collect(Collectors.toList());  
 
-    } /* 2.2- READ Produit paginable */
+    } /* 2.2- READ Produit  */
     
 
     /*=======================================================*/
     
-    @Override /*3- UPDATE Produit paginable */
+    @Override /*3- UPDATE Produit */
     @Transactional
     public Optional<ProduitDto> update(Produit produit, Long id) {
         Optional<Produit> o = produitRepository.findById(id);
@@ -84,22 +83,22 @@ public class ProduitServiceImp implements ProduitService{
     
     /*=======================================================*/
 
-    @Override /*4- DELETE Produit paginable */
+    @Override /*4- DELETE Produit  */
     @Transactional
     public void remove(Long id) {
         produitRepository.deleteById(id);
-    } /*4- END DELETE Produit paginable */
+    } /*4- END DELETE Produit  */
 
 
 
     /*=======================================================*/
     /*|||||||||||||||||||||OPTIONNEL||||||||||||||||||||||||*/
 
-    @Override /*5- READ BY ID Produit paginable */
+    @Override /*5- READ BY ID Produit  */
     @Transactional(readOnly = true)
     public Optional<ProduitDto> findById(Long id) {
         return produitRepository.findById(id).map(u -> DtoMapperProduct.builder().setProduit(u).build());
-    } /*5- READ BY ID Produit paginable */
+    } /*5- READ BY ID Produit  */
 
 
 

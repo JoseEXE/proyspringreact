@@ -34,10 +34,7 @@ import jakarta.validation.Valid;
 public class CatProduitController {
 
     @Autowired
-    private CatProductServiceImp catProductServiceImp;
-
-
-      
+    private CatProductServiceImp catProductServiceImp;   
     /*==============================================================*/
     /*1- CREATE Cat Produit paginable */
 
@@ -46,16 +43,12 @@ public class CatProduitController {
         if(result.hasErrors()){
             return validation(result);
         }
-
          return ResponseEntity.status(HttpStatus.CREATED).body(catProductServiceImp.save(catProduit));
-
     }
-
     /*1- END CREATE Cat Produit paginable */
     /*==============================================================*/   
     /*==============================================================*/
     /*2.1- READ Cat Produit paginable */
-    
     @GetMapping("/page/{page}")
     public Page<CatProduitDto> list(@PathVariable Integer page){
         Pageable pageable = PageRequest.of(page, 5);
@@ -86,7 +79,6 @@ public class CatProduitController {
         }
         return ResponseEntity.notFound().build();
     }
-
     /*3- END UPDATE Cat Produit paginable */
     /*==============================================================*/
     /*==============================================================*/
@@ -101,7 +93,6 @@ public class CatProduitController {
         }
         return ResponseEntity.notFound().build(); //404
     }
-
     /*4- END DELETE Cat Produit paginable */
     /*==============================================================*/
 

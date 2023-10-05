@@ -40,6 +40,9 @@ public class EtablissementController {
     /*==============================================================*/
     /*1- CREATE Etablissement */
 
+    public EtablissementController(EtablissementServiceImp etablissementService) {
+    }
+
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody Etablissement etablissement, BindingResult result){
         if(result.hasErrors()){

@@ -35,12 +35,14 @@ export const UsersPage = () =>{
         <UserModalForm />
     }
 
-    <div className="container my-4">
-        <h1>Hola Users</h1>
-        <div className="row">            
-            <div className="col">
-                { (visibleForm || !login.isAdmin ) || <button className="btn btn-primary btn-sm" onClick={ handlerFormOpen }>Nouvel utilisateur</button>}
+    <div className="container my-4 border p-4">
+        <h3>Hola Users</h3><hr/>
+        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
 
+                { (visibleForm || !login.isAdmin ) || <button className="btn btn-primary btn-sm" onClick={ handlerFormOpen }><i className="bi bi-plus-circle"></i> Ajouter Utilisateur</button>}
+            
+            </div>
+            <hr />
                 {
                     users.length === 0 
                     ? <div className="alert alert-warning">Il n'y a pas d'utilisateurs sur la liste</div> 
@@ -51,8 +53,8 @@ export const UsersPage = () =>{
                     </>
                 }
 
-            </div>
-        </div>
+            
+
     </div>
     </>);
 };

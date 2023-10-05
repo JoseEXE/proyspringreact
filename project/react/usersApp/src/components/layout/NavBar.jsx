@@ -20,7 +20,7 @@ export const NavBar = () => {
 
 
                     <li className="nav-item">
-                       <NavLink  className="nav-link" to="/users">Clients </NavLink>
+                       <NavLink  className="nav-link" to="/users">Tableau Comandes  </NavLink>
                         
                     </li>
                     {!login.isAdmin || <>
@@ -30,15 +30,14 @@ export const NavBar = () => {
                         </li>
 
 
-                        <li className="nav-item">
-                            <NavLink  className="nav-link" to="/users/register">Enregistrement users </NavLink>
-                        </li>
+
                     </>
 
                    
                     }
 
-        
+                {!login.isAdmin ||
+                    <>
 
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,7 +49,9 @@ export const NavBar = () => {
                     Carte
                     </a>
                 <ul className="dropdown-menu dropdown-menu-dark">
-                    <li><a className="dropdown-item" href="#">Produits</a></li>
+                    <li>
+                        <NavLink  className="nav-link" to="/produits">Produits </NavLink> 
+                    </li>
                     <li><hr className="dropdown-divider" /></li>
                     <li>
                         <NavLink  className="nav-link" to="/catproduits">Catègories Produits </NavLink> 
@@ -58,7 +59,8 @@ export const NavBar = () => {
                     <li><hr className="dropdown-divider" /></li>
                 </ul>
                 </li>
- 
+                </>
+                } 
 
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -88,9 +90,9 @@ export const NavBar = () => {
                     </a>
                 <ul className="dropdown-menu dropdown-menu-dark">
 
-                    <li><NavLink className="dropdown-item" to={`/users`}  >Utilisateurs </NavLink></li>
                     {!login.isAdmin ||
                     <>
+                    <li><NavLink className="dropdown-item" to={`/users`}  >Utilisateurs </NavLink></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li> <NavLink  className="dropdown-item" to="/users/register">Enregistrement users </NavLink> </li>
                     </>
@@ -99,7 +101,7 @@ export const NavBar = () => {
                     <li><hr className="dropdown-divider" /></li>
                     <li><NavLink className="dropdown-item" to={`/users/pass/${login.user?.id}`} >Changer mon password</NavLink></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item" href="#">Rôles</a></li>
+                    <li></li>
                 </ul>
                 </li>
                 </ul>

@@ -34,13 +34,10 @@ export const useUsers = () => {
     const [resPass, dispatchResPass] = useReducer(UsesReducer, {id : 0, email: '',});
     const [visibleForm, setVisibleForm] = useState(false); 
     const [errors, setErrors] = useState(initErrors);
-
-
     const { login, handlerLogout } = useContext(AuthContext);
 
     const getUsers = async(page=0) =>{ 
         const result = await findAllPages(page); //findAll()
-        console.log("result=>: "+result.data);
         dispatch({
             type: 'loadingUsers',
             payload: result.data ,
@@ -50,8 +47,6 @@ export const useUsers = () => {
             payload: result.data,
         })
     }
-
-
     const getMyUser = async(id) =>{ 
         const result = await findMyUser(id); //findAll()
         console.log("result=>: "+result.data);
@@ -60,23 +55,8 @@ export const useUsers = () => {
             payload: result.data ,
         });
     }
-
-
-
-
-
     const navigation = useNavigate();
-
-
-
-
-
     const handlerChangerPass = async(user) =>{
-        console.log("handlerChangerPass =>");
-        console.log("user.id: " + user.id);
-        console.log("user.oldPassword: "+user.oldPassword);
-        console.log("user.newPassword: "+user.newPassword);
-
         let response;
         try {
             response = await changePass(user);
@@ -89,10 +69,7 @@ export const useUsers = () => {
                 'Password L\'utilisateur a été actualisé avec succès !',
                 'success'
                 )
-
                return true;
-
-
         } catch (error) {
          
             Swal.fire({

@@ -15,12 +15,9 @@ export const UserRow = ({ user }) => {
         <td>{ user.lastName }</td>
         <td>{ user.email }</td>
         {!login.isAdmin ||<>
-        <td><button type="button" className="btn btn-secondary btn-sm" onClick={() => handlerSelectUser(user) }>Actualiser</button></td>
-        <td>
-            <NavLink className={'btn btn-secondary btn-sm'} 
-            to={'/users/edit/'+user.id}> Actualiser URL</NavLink> 
-        </td>
-        <td><button type="button" className="btn btn-danger btn-sm" onClick={() => handlerDelateUser(user.id) }>Supprimer</button></td>
+        <td><button type="button" className="btn btn-warning btn-sm" onClick={() => handlerSelectUser(user) }><i className="bi bi-pencil"></i> Modifier</button></td>
+
+        <td><button type="button" className="btn btn-success btn-sm" onClick={() => handlerDelateUser(user.id) }><i className="bi bi-zoom-in"></i> Détail</button></td>
           </>  
         }
 

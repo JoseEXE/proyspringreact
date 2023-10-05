@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 import com.jose.backend.usersapp.backendusersapp.models.dto.ClientDto;
 import com.jose.backend.usersapp.backendusersapp.models.entities.Client;
 

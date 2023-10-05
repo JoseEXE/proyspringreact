@@ -1,11 +1,11 @@
 import { useContext } from "react";
+import { ProduitContext } from "../../context/produit/ProduitContext";
 import { AuthContext } from "../../auth/context/AuthContext";
-import { CatProduitContext } from "../../context/catproduit/CatProduitContext";
-import { CatProduitRows } from "./CatProduitRows";
+import { ProduitRows } from "./ProduitRows";
 
-export const CatProduitList = () =>{
-    const { registres } = useContext(CatProduitContext);
-    const { paginator } = useContext(CatProduitContext);
+export const ProduitList = () => {
+    const { registres, registresCatProd } = useContext(ProduitContext);
+    const { paginator } = useContext(ProduitContext);
     const { login } = useContext(AuthContext);    
 
     return(
@@ -15,24 +15,27 @@ export const CatProduitList = () =>{
                         <th>ID</th>
                         <th>Nom</th>
                         <th>Description</th>
+                        <th className="text-center">Catégorie</th>
+                        <th className="text-center">Type Plat</th>
                         {!login.isAdmin ||<>
                             <th></th>
                             <th></th>
                         </>
                         }
+            
                     </tr>
                 </thead>
                 <tbody>
-                {     
+                {
+
+              
         registres.map(registre => (
             <tr key={ registre.id   }>
-                <CatProduitRows registre={ registre } />
+                <ProduitRows registre={ registre } />
             </tr>
+
 ))
 }
 </tbody>
 </table> );
-
 }
-
-

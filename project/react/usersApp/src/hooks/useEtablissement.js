@@ -43,7 +43,6 @@ export const useEtablissement = () => {
     const [optionForm, setOptionForm ] = useState("");
     const navigation = useNavigate();
 
-
     /* READ Etablissement */
     /*======================================================*/
     const getEtablissements = async(page=0) =>{ 
@@ -57,11 +56,9 @@ export const useEtablissement = () => {
             payload: result.data,
         })
     }
-
-
-
     /*END READ Etablissement */
     /*======================================================*/
+
 
 
     /* CREATION ET MODIFICATION Etablissement*/
@@ -69,22 +66,17 @@ export const useEtablissement = () => {
     const handlerAddEtablissement = async(etablissement) =>{
         console.log("Entra en la guardar");
             if(!login.isAdmin) return;
-
             let response;
             try {
-                
                 if(etablissement.id === 0){
                     response = await save(etablissement);
                 }else{
                     response = await update(etablissement);
                 }
-                
                 dispatch({
-        
                     type : (etablissement.id === 0) ? 'addEtablissement' : 'updateEtablissement',
                     payload: response.data,
                 })
-
                 if(etablissement.id === 0){
                     Swal.fire(
                         'Etablissement enregistré!.',
@@ -102,9 +94,6 @@ export const useEtablissement = () => {
                         handerFormClose();
                         navigation('/etablissements');
                     }
-                
-            
-                    
             } catch(error) {
                 if(error.response && error.response.status == 400){
                     setErrors(error.response.data);

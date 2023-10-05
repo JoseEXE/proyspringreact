@@ -30,22 +30,17 @@ import com.jose.backend.usersapp.backendusersapp.services.JpaUserDetailsService;
 @Configuration
 @EnableMethodSecurity
 public class SpringSecurityConfig {
-
     @Autowired
     private AuthenticationConfiguration authenticationConfiguration;
  
     @Bean
     PasswordEncoder passwordEncoder(){
-        //return NoOpPasswordEncoder.getInstance();
         return new BCryptPasswordEncoder();
     }
-
     @Bean
 	public UserDetailsService userDetailsService() {
 	    return new JpaUserDetailsService();
 	}
-
-    
     @Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 	    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -53,13 +48,10 @@ public class SpringSecurityConfig {
 	    authProvider.setPasswordEncoder(passwordEncoder()); 
 	    return authProvider;
 	}
-
-    
     @Bean 
     AuthenticationManager authenticationManager() throws Exception{
         return authenticationConfiguration.getAuthenticationManager();
     }
-
     @Bean
     SecurityFilterChain filterChain( HttpSecurity http) throws Exception {
 

@@ -1,11 +1,13 @@
-import { useCatProduit } from "../../hooks/useCatProduit";
-import { CatProduitContext } from "./CatProduitContext";
+import { useProduit } from "../../hooks/useProduit";
+import { ProduitContext } from "./ProduitContext";
 
-export const CatProduitProvider = ({ children }) => {
+export const ProduitProvider = ({ children }) => {
+    
     const {
         handlerAddRegistre,
         handlerSelectRegistre,
         getRegistres,
+        getCatProd,
         handlerFormOpen,
         handerFormClose,
         optionForm,
@@ -16,16 +18,19 @@ export const CatProduitProvider = ({ children }) => {
         initEstructure,
         initErrors,
         registres,
+        registresCatProd,
         paginator,
         errors,
-    } = useCatProduit();
+        listTypePlat,
+    } = useProduit();
     
     return(
-        <CatProduitContext.Provider value={ 
+        <ProduitContext.Provider value={ 
             {
                 handlerAddRegistre,
                 handlerSelectRegistre,
                 getRegistres,
+                getCatProd,
                 handlerFormOpen,
                 handerFormClose,
                 optionForm,
@@ -36,12 +41,14 @@ export const CatProduitProvider = ({ children }) => {
                 initEstructure,
                 initErrors,
                 registres,
+                registresCatProd,
                 paginator,
                 errors,
+                listTypePlat,
+                
             }
         }>
             {children}
-        </CatProduitContext.Provider>
+        </ProduitContext.Provider>
     );
 }
-

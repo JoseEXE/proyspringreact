@@ -9,6 +9,10 @@ public class CatProduitDto {
     private boolean statut;
     
 
+    public CatProduitDto(long id) {
+        this.id = id;
+    }
+
     public CatProduitDto(long id, String nom, String description, boolean statut) {
         this.id = id;
         this.nom = nom;

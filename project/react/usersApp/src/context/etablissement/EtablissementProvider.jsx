@@ -1,11 +1,7 @@
 import { useEtablissement } from "../../hooks/useEtablissement";
 import { EtablissementContext } from "./EtablissementContext";
 
-
-
-
 export const EtablissementProvider = ({ children }) => {
-    
     const {
         handlerAddEtablissement,
         handlerSelectEtablissement,

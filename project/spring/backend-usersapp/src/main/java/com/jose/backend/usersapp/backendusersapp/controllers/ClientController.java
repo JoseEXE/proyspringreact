@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,18 +39,15 @@ public class ClientController {
 
     /*==============================================================*/
     /*1- CREATE Client */
-
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody Client client, BindingResult result){
         if(result.hasErrors()){
             return validation(result);
         }
          return ResponseEntity.status(HttpStatus.CREATED).body(clientServiceImp.save(client));
-
     }
     /*1- END CREATE Client */
     /*==============================================================*/   
-    /*==============================================================*/
     /*2.1- READ Client */
     @GetMapping
     public List<ClientDto> list(){
@@ -57,7 +55,7 @@ public class ClientController {
     }
     /*2.1- END READ Client */
     /*==============================================================*/
-    /*==============================================================*/
+
     /*2.2- READ Client pageable */
     @GetMapping("/page/{page}")
     public Page<ClientDto> list(@PathVariable Integer page){
@@ -65,7 +63,6 @@ public class ClientController {
         return clientServiceImp.findAll(pageable);
     } 
     /*2.2- END READ Client pageable */
-    /*==============================================================*/
     /*==============================================================*/
     /*3- UPDATE Client */
 
@@ -84,7 +81,6 @@ public class ClientController {
     }
 
     /*3- END UPDATE Client */
-    /*==============================================================*/
     /*==============================================================*/
     /*4- DELETE Client */
     @DeleteMapping("/{id}")

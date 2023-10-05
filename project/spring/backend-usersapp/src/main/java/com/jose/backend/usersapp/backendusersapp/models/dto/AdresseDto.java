@@ -46,10 +46,7 @@ public class AdresseDto {
 
     public ClientDto getClient() {
         ClientDto clientDto = new ClientDto();
-
-
         BeanUtils.copyProperties(client,clientDto);
-
         return clientDto;
     }
 

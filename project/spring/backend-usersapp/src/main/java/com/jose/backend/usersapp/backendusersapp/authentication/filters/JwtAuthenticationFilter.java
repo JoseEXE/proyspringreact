@@ -46,13 +46,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                     user = new ObjectMapper().readValue(request.getInputStream(), User.class);
                     username = user.getEmail();
                     password = user.getPassword();
-                    //id = user.getId();
-                    //fullName = user.getLastName() +" "+ user.getNameU();
-                
-                  //  fullName = user.getNameU() + " " + user.getLastName();
 
-                    //logger.info("fullName: "+fullName);
-                    //logger.info("id=========================================================->: "+id);
                     logger.info("username=========================================================->: "+username);
                     logger.info("password=========================================================->: "+password);
 
@@ -74,34 +68,15 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
             Authentication authResult) throws IOException, ServletException {
 
-                System.out.println("authResult: "+ authResult.getPrincipal());
-                System.out.println("getCredentials: "+ authResult.getCredentials());
-                System.out.println("getDetails: "+ authResult.getDetails());
-
-
-                //String usernamex =  ((UserLogin) authResult.getPrincipal()).getFullName();                                 
-               
-               
-
-               // System.out.println("rs: "+usernamex);
-
-               String usernameT = ((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername();
-      
-                               String userNameDetails = new String(usernameT);
+                String usernameT = ((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername();
+                String userNameDetails = new String(usernameT);
                 String[] userNameDetailsT = userNameDetails.split(":");
                 String username = userNameDetailsT[0];
                 String fullName = userNameDetailsT[1];
                 String id = userNameDetailsT[2];
 
-                System.out.println("username: "+username);
-                System.out.println("fullName: "+fullName);
-                System.out.println("id: "+id);
-
-                //String username = userLogin.getUsername();
-                System.out.println("username::::::::: "+authenticationManager);
                 /* ROLES */
                 Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
-                
 
                 boolean isAdmin = roles.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
                 Claims claims = Jwts.claims();
@@ -110,10 +85,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 claims.put("id", id );
                 claims.put("fullName", fullName );
                 /* END ROLES */
-
-
-                //String originalByte = SECRET_KEY + ":" + username;
-                //String token = Base64.getEncoder().encodeToString(originalByte.getBytes()) ;
                 String token =Jwts.builder()
                 .setClaims(claims) //ROLES
                 .setSubject(username)
@@ -121,20 +92,14 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 3600000))
                 .compact();
-
-
                 response.addHeader(HEADER_AUTHORIZATION, PREFIX_TOKEN + token);
-
                 Map<String, Object> bodyResponse = new HashMap<>();
-
                 bodyResponse.put("token", token);
                 bodyResponse.put("message", String.format("%s avez initialisé la session correctement", fullName));
                 bodyResponse.put("username", username);
-
                 response.getWriter().write(new ObjectMapper().writeValueAsString(bodyResponse));
                 response.setStatus(200);
                 response.setContentType("application/json");
-
     }
 
     @Override

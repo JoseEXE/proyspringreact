@@ -4,11 +4,8 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 export const RegisterPage = () =>{
-
-    //handlerAddUser no lo utilizamos 
     const { users=[], userEstructure } = useContext(UserContext);
-
-    const [selectUser, setSelectUser] = useState(userEstructure)
+    const [selectUser, setSelectUser] = useState(userEstructure);
     const { id } = useParams();
     useEffect(() =>{
         console.log("id: "+id);
@@ -16,7 +13,7 @@ export const RegisterPage = () =>{
             const userx = users.find(u => u.id == id ) || userEstructure;
             setSelectUser(userx);
         }
-        
+
     }, [id])
     return(<>
     <div className="container my-4">
@@ -29,3 +26,4 @@ export const RegisterPage = () =>{
 </div>
     </>);
 };
+

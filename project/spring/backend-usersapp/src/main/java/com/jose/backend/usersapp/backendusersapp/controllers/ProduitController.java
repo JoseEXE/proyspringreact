@@ -41,6 +41,9 @@ public class ProduitController {
 
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody Produit produit, BindingResult result){
+        System.out.println("================================================="+produit);
+        System.out.println("================================================="+produit.getCatProduit().getId());
+        System.out.println("================================================="+produit.getUser().getId());
         if(result.hasErrors()){
             return validation(result);
         }

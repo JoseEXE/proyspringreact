@@ -8,15 +8,17 @@ public class DtoMapperCatProduct {
     private CatProduit catProduit;
 
     private DtoMapperCatProduct(){
-
+    
     }
     
     public static DtoMapperCatProduct builder(){
+          
         return new DtoMapperCatProduct();
     }
 
     /* CONSTRUCTOR */
     public DtoMapperCatProduct setCatProduit(CatProduit catProduit){
+        
         this.catProduit = catProduit;
         return this;
     }
@@ -25,6 +27,7 @@ public class DtoMapperCatProduct {
     nous créons une nouvelle entité */
 
     public CatProduitDto build(){
+        
         if(catProduit == null){
             throw new RuntimeException("L'entité doit être transmise!!.");
         }

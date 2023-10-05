@@ -1,5 +1,6 @@
 import axios from "axios";
-const URL_CATPRODUIT = 'http://localhost:8080/catproduits';
+const URL = 'http://localhost:8080/produits';
+
 const config = () => {
     return {
         headers : {
@@ -10,7 +11,17 @@ const config = () => {
 }
 export const findAll = async() =>{
     try {
-        const response = await axios.get(URL_CATPRODUIT);
+        const response = await axios.get(URL);
+        return response;    
+    } catch (error) {
+       console.error(error);
+    }
+    return null;
+}
+export const findAllPages = async(page = 0) =>{
+ 
+    try {
+        const response = await axios.get(`${URL}/page/${page}`);
         return response;    
         
     } catch (error) {
@@ -18,28 +29,21 @@ export const findAll = async() =>{
     }
     return null;
 }
-export const findAllPages = async(page = 0) =>{
+
+
+export const save = async({ catProduit, user, code, nom, description, prix, type_plat }) =>{
     try {
-        const response = await axios.get(`${URL_CATPRODUIT}/page/${page}`);
-        return response;    
-    } catch (error) {
-       console.error(error);
-    }
-    return null;
-}
-export const save = async({ nom, description, statut }) =>{
-    try {
-        return await axios.post(URL_CATPRODUIT, { nom, description, statut, }, config());
+        return await axios.post(URL, { catProduit , user, code, nom, description, prix, type_plat }, config());
     } catch (error) {
        throw error; 
     }
 }
-export const update = async({ id, nom, description, statut, }) => {
+
+export const update = async({ id, catProduit, user, code, nom, description, prix, type_plat  }) => {
     try {
-        return await axios.put(`${URL_CATPRODUIT}/${id}`, { nom, description, statut  }, config());
+
+        return await axios.put(`${URL}/${id}`, {catProduit, user, code, nom, description, prix, type_plat }, config());
     } catch (error) {
        throw error;     
     }
 }
-
-

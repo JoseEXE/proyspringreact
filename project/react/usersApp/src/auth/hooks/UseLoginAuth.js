@@ -48,9 +48,6 @@ export const UseLoginAuth = () =>{
             console.log("claims.isAdmin: "+claims.isAdmin);
             console.log("claims.id: "+claims.id);
             console.log("claims.fullName: "+claims.fullName);
-            console.log("");
-            console.log("");
-            console.log("");
             sessionStorage.setItem('token', `Bearer ${token}`);
 
             // J'essaie de rassembler toutes les informations relatives aux utilisateurs LOGIN
@@ -59,11 +56,8 @@ export const UseLoginAuth = () =>{
             //     console.log("result=>: "+result.data);
             //     dispatchUserLogin({
             //         type: 'getInformationLogin',
-            //         payload: result.data ,
-        
-        
+            //         payload: result.data ,   
             //     });
-
             // }
 
             navigate('/users');

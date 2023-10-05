@@ -1,13 +1,11 @@
 package com.jose.backend.usersapp.backendusersapp.models.entities;
 
 import java.time.LocalDateTime;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "produit")
@@ -24,11 +23,11 @@ public class Produit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne( cascade = CascadeType.ALL )
+    @ManyToOne( fetch = FetchType.EAGER )
 	@JoinColumn(name="id_cat_produit")
     private CatProduit catProduit;
     
-    @ManyToOne( cascade = CascadeType.ALL )
+    @ManyToOne( fetch = FetchType.EAGER )
 	@JoinColumn(name="id_user")
     private User user;
 
@@ -38,13 +37,15 @@ public class Produit {
     private String nom;
 
     private String description;
-    @NotEmpty(message = "Le prix produit ne doit pas être vide...")
+    @NotNull(message = "Le prix produit ne doit pas être vide...")
     private Double prix;
 
     @NotEmpty(message = "Le type de plat (Chaud, froid) produit ne doit pas être vide...")
     private String type_plat;
+    
     @CreationTimestamp
 	private LocalDateTime createdOn;
+
 	@UpdateTimestamp
 	private LocalDateTime updatedOn;
 
@@ -55,7 +56,7 @@ public class Produit {
     public Produit(long id, CatProduit catProduit, User user,
             @NotEmpty(message = "Le code produit ne doit pas être vide...") String code,
             @NotEmpty(message = "Le nom produit ne doit pas être vide...") String nom, String description,
-            @NotEmpty(message = "Le prix produit ne doit pas être vide...") Double prix,
+            @NotNull(message = "Le prix produit ne doit pas être vide...") Double prix,
             @NotEmpty(message = "Le type de plat (Chaud, froid) produit ne doit pas être vide...") String type_plat,
             LocalDateTime createdOn, LocalDateTime updatedOn) {
         this.id = id;
@@ -74,9 +75,24 @@ public class Produit {
     public Produit(long id, CatProduit catProduit, User user,
             @NotEmpty(message = "Le code produit ne doit pas être vide...") String code,
             @NotEmpty(message = "Le nom produit ne doit pas être vide...") String nom, String description,
-            @NotEmpty(message = "Le prix produit ne doit pas être vide...") Double prix,
+            @NotNull(message = "Le prix produit ne doit pas être vide...") Double prix,
             @NotEmpty(message = "Le type de plat (Chaud, froid) produit ne doit pas être vide...") String type_plat) {
         this.id = id;
+        this.catProduit = catProduit;
+        this.user = user;
+        this.code = code;
+        this.nom = nom;
+        this.description = description;
+        this.prix = prix;
+        this.type_plat = type_plat;
+    }
+
+    
+    public Produit(CatProduit catProduit, User user,
+            @NotEmpty(message = "Le code produit ne doit pas être vide...") String code,
+            @NotEmpty(message = "Le nom produit ne doit pas être vide...") String nom, String description,
+            @NotNull(message = "Le prix produit ne doit pas être vide...") Double prix,
+            @NotEmpty(message = "Le type de plat (Chaud, froid) produit ne doit pas être vide...") String type_plat) {
         this.catProduit = catProduit;
         this.user = user;
         this.code = code;
@@ -92,7 +108,7 @@ public class Produit {
     public Produit(long id, CatProduit catProduit, User user,
             @NotEmpty(message = "Le code produit ne doit pas être vide...") String code,
             @NotEmpty(message = "Le nom produit ne doit pas être vide...") String nom, String description,
-            @NotEmpty(message = "Le prix produit ne doit pas être vide...") Double prix,
+            @NotNull(message = "Le prix produit ne doit pas être vide...") Double prix,
             @NotEmpty(message = "Le type de plat (Chaud, froid) produit ne doit pas être vide...") String type_plat,
             boolean statut) {
         this.id = id;
@@ -110,7 +126,7 @@ public class Produit {
     public Produit(long id, CatProduit catProduit, User user,
             @NotEmpty(message = "Le code produit ne doit pas être vide...") String code,
             @NotEmpty(message = "Le nom produit ne doit pas être vide...") String nom, String description,
-            @NotEmpty(message = "Le prix produit ne doit pas être vide...") Double prix,
+            @NotNull(message = "Le prix produit ne doit pas être vide...") Double prix,
             @NotEmpty(message = "Le type de plat (Chaud, froid) produit ne doit pas être vide...") String type_plat,
             LocalDateTime createdOn, LocalDateTime updatedOn, boolean statut) {
         this.id = id;

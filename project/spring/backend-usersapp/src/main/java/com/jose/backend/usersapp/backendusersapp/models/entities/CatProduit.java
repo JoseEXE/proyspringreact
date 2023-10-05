@@ -22,11 +22,9 @@ public class CatProduit {
     @NotEmpty(message = "Le description de categorie ne doit pas être vide...")
     private String description;
 
-
     @Column(name = "statut", columnDefinition = "boolean default true")
     private boolean statut;
     
-
     public CatProduit(long id, @NotEmpty(message = "Le nom de categorie produit ne doit pas être vide...") String nom,
             @NotEmpty(message = "Le description de categorie ne doit pas être vide...") String description) {
         this.id = id;
@@ -34,6 +32,9 @@ public class CatProduit {
         this.description = description;
     }
 
+    public CatProduit(long id) {
+        this.id = id;
+    }
 
     
     public CatProduit(long id, @NotEmpty(message = "Le nom de categorie produit ne doit pas être vide...") String nom,

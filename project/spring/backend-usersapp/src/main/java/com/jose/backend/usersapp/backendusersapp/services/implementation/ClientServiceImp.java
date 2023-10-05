@@ -26,21 +26,15 @@ public class ClientServiceImp implements ClientService{
     @Override
     @Transactional
     public ClientDto save(Client client) {
-
         return DtoMapperClient.builder().setClient(clientRepository.save(client)).build();
-
     }
      /*1- END CREATE Client  */
-    /*=======================================================*/
-
     /*=======================================================*/
     /* 2.1- READ Client  */
     @Override
     @Transactional(readOnly = true)
     public List<ClientDto> findAll() {
-
         List<Client> clients = (List<Client>) clientRepository.findAll();
-
         return clients
                     .stream()
                     .map(u -> DtoMapperClient.builder().setClient(u).build())
@@ -57,7 +51,6 @@ public class ClientServiceImp implements ClientService{
     }
     /* 2.2- END READ Client pageable */
     /*=======================================================*/
-    /*=======================================================*/
     /*3- UPDATE Client  */
     @Override
     @Transactional
@@ -71,18 +64,11 @@ public class ClientServiceImp implements ClientService{
             clientDb.setPrenom(client.getPrenom());
             clientDb.setNum_tel(client.getNum_tel());
             clientDb.setStatut(client.isStatut());
-
-    
-           
             clientOptional = clientRepository.save(clientDb);
         }
         return Optional.ofNullable(DtoMapperClient.builder().setClient(clientOptional).build());
-
-
-
     }
     /*3- END UPDATE Client  */
-    /*=======================================================*/
     /*=======================================================*/
     /*4- DELETE Client  */
     @Override
@@ -91,9 +77,6 @@ public class ClientServiceImp implements ClientService{
         clientRepository.deleteById(id);
     }
     /*4- END DELETE Client  */
-    /*=======================================================*/
-
-
     /*=======================================================*/
     /*|||||||||||||||||||||OPTIONNEL||||||||||||||||||||||||*/
 
