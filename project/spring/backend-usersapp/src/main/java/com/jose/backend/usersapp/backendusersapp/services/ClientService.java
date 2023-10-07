@@ -23,4 +23,6 @@ public interface ClientService {
 
     void remove(Long id);
 
+    List<ClientDto> findByTel(String tel);
+
 }

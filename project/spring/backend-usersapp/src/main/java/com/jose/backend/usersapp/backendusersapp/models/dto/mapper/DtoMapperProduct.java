@@ -9,17 +9,17 @@ public class DtoMapperProduct {
     private Produit produit;
 
     private DtoMapperProduct(){
-        System.out.println("DtoMapperCatProduct 1");
+        System.out.println("DtoMapperProduct 1");
     }
 
     public static DtoMapperProduct builder(){
-        System.out.println("DtoMapperCatProduct 2 builder");
+        System.out.println("DtoMapperProduct 2 builder");
         return new DtoMapperProduct();
     }
 
     /* CONSTRUCTOR */
     public DtoMapperProduct setProduit(Produit produit){
-        System.out.println("DtoMapperCatProduct 3 constructor");
+        System.out.println("DtoMapperProduct 3 constructor");
         this.produit = produit;
         return this;
     }
@@ -28,13 +28,12 @@ public class DtoMapperProduct {
     nous créons une nouvelle entité */
 
     public ProduitDto build(){
-        System.out.println("DtoMapperCatProduct build");
+        System.out.println("DtoMapperProduct build");
         if(produit == null) {
             throw new RuntimeException("L'entité doit être transmise!!.");
         }
 
-        System.out.println("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§: "+produit.getCatProduit());
-        System.out.println("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§: "+produit.getUser());
+
 
         return new ProduitDto(
         this.produit.getId(), 

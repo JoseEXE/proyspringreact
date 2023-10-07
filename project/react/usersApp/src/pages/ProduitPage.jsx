@@ -9,7 +9,7 @@ import { ProduitList } from "../components/produit/ProduitList";
 export const ProduitPage = () =>{
     const { page } = useParams();
     const { login } = useContext(AuthContext);
-    console.log("page: "+page);
+
 
     const {
         registres,
@@ -50,7 +50,7 @@ export const ProduitPage = () =>{
                 : 
                 <>
                 <ProduitList />
-                <Paginator url="/catproduits/page" paginator={paginator} />
+                <Paginator url="/produits/page" paginator={paginator} />
                 </>
             }
     </div>

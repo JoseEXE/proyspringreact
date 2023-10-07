@@ -60,7 +60,7 @@ public class SpringSecurityConfig {
                                                         "/catproduits", "/catproduits/page/{page}", 
                                                         "/produits", "/produits/page/{page}",
                                                         "/etablissements", "/etablissements/page/{page}",
-                                                        "/clients", "/clients/page/{page}",
+                                                        "/clients", "/clients/page/{page}", "/clients/recherche",
                                                         "/adresses", "/adresses/page/{page}",
                                                         "/commandes", "/commandes/page/{page}",
                                                         "/detailcommandes", "/detailcommandes/page/{page}").permitAll()
@@ -73,13 +73,13 @@ public class SpringSecurityConfig {
             .requestMatchers(HttpMethod.PUT, "/users/{id}","/users/pass/{id}").permitAll()
             .requestMatchers("/users/{id}","/users/pass/{id}").permitAll()
             .requestMatchers(HttpMethod.POST, "/users", "/catproduits", "/produits",
-                                                        "/etablissements", "/clients", "/adresses",
+                                                        "/etablissements", "/clients", "/clients/recherche", "/adresses",
                                                         "/commandes", "/detailcommandes").hasRole("ADMIN")
             .requestMatchers("/users/**", "/users/pass/**", "/catproduits/**", "/produits/**",
                                                         "/etablissements/**", "/clients/**", "/adresses/**",
                                                         "/commandes/**", "/detailcommandes/**").hasRole("ADMIN")
             .requestMatchers(HttpMethod.PUT, "/users/pass/**", "/clients/**", "/adresses/**", "/commandes/**", "/detailcommandes/**").hasRole("USER")
-            .requestMatchers(HttpMethod.POST, "/users/pass/**", "/clients/**", "/adresses/**", "/commandes/**", "/detailcommandes/**").hasRole("USER")
+            .requestMatchers(HttpMethod.POST, "/users/pass/**", "/clients/**", "/adresses/**", "/commandes/**", "/detailcommandes/**", "/clients/recherche").hasRole("USER")
             //.requestMatchers(HttpMethod.DELETE, "/users/{id}").hasRole("ADMIN")
             //.requestMatchers(HttpMethod.PUT, "/users/{id}").hasRole("ADMIN")
             .anyRequest().authenticated()

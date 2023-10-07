@@ -92,7 +92,7 @@ public class Produit {
             @NotEmpty(message = "Le code produit ne doit pas être vide...") String code,
             @NotEmpty(message = "Le nom produit ne doit pas être vide...") String nom, String description,
             @NotNull(message = "Le prix produit ne doit pas être vide...") Double prix,
-            @NotEmpty(message = "Le type de plat (Chaud, froid) produit ne doit pas être vide...") String type_plat) {
+            @NotEmpty(message = "Le type de plat (Chaud, froid) produit ne doit pas être vide...") String type_plat, boolean statut) {
         this.catProduit = catProduit;
         this.user = user;
         this.code = code;
@@ -100,11 +100,10 @@ public class Produit {
         this.description = description;
         this.prix = prix;
         this.type_plat = type_plat;
+        this.statut = statut;
     }
 
-
-
-
+ 
     public Produit(long id, CatProduit catProduit, User user,
             @NotEmpty(message = "Le code produit ne doit pas être vide...") String code,
             @NotEmpty(message = "Le nom produit ne doit pas être vide...") String nom, String description,

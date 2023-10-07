@@ -52,7 +52,6 @@ export const useCatProduit = () =>{
      /* CREATION ET MODIFICATION Etablissement*/
     /*======================================================*/
     const handlerAddRegistre = async(register) =>{
-        console.log("Entra en la guardar");
             if(!login.isAdmin) return;
 
             let response;

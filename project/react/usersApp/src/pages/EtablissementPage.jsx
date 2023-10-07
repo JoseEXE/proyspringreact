@@ -27,7 +27,6 @@ useEffect(()=>{
 },[,page])
 
 
-console.log("etablissements?.lenght: "+etablissements?.length);
     return (<>
     { !visibleForm || 
         <EtablissementModalForm />

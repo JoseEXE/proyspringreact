@@ -89,18 +89,16 @@ export const useProduit = () =>{
       /* CREATION ET MODIFICATION Produit*/
     /*======================================================*/
     const handlerAddRegistre = async(register) =>{
-
-        
             if(!login.isAdmin) return;
-
             let response;
             try {
        
+               // console.log(JSON.parse(JSON.stringify(register)));
+
                 if(register.id === 0){
-            
                     response = await save(register);
-            
                 }else{
+                    console.log("UPDATE : :: : ");
                     response = await update(register);
                 }
                 
@@ -113,20 +111,20 @@ export const useProduit = () =>{
      
                 if(register.id === 0){
                 Swal.fire(
-                    'Cat Produit enregistré!.',
-                    'L\'Cat Produit a été enregistré avec succès !',
+                    'Produit enregistré!.',
+                    'Le Produit a été enregistré avec succès !',
                     'success'
                     )
                     handerFormClose();
                     navigation('/catproduits');
                 }else{
                     Swal.fire(
-                    'Cat Produit modifié!.',
-                    'L\'Cat Produit a été actualisé avec succès !',
+                    'Produit modifié!.',
+                    'Le Produit a été actualisé avec succès !',
                     'success'
                     )
                     handerFormClose();
-                    navigation('/catproduits');
+                    navigation('/produits');
                 }
                     
                     

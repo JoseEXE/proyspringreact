@@ -51,6 +51,18 @@ public class ClientServiceImp implements ClientService{
     }
     /* 2.2- END READ Client pageable */
     /*=======================================================*/
+    /* 2.3- READ Client Recherche */
+    @Override
+    @Transactional
+    public List<ClientDto> findByTel(String tel) {
+        List<Client>  clients =  clientRepository.findByTelContaining(tel);
+        System.out.println("clients N0: "+clients.size());
+        return clients
+                    .stream()
+                    .map(u -> DtoMapperClient.builder().setClient(u).build())
+                    .collect(Collectors.toList());  
+    }
+    /* 2.3- END READ Client Recherche */
     /*3- UPDATE Client  */
     @Override
     @Transactional
@@ -62,7 +74,7 @@ public class ClientServiceImp implements ClientService{
 
             clientDb.setNom(client.getNom());
             clientDb.setPrenom(client.getPrenom());
-            clientDb.setNum_tel(client.getNum_tel());
+            clientDb.setTel(client.getTel());
             clientDb.setStatut(client.isStatut());
             clientOptional = clientRepository.save(clientDb);
         }
@@ -88,6 +100,7 @@ public class ClientServiceImp implements ClientService{
 
     }
     /*5- END READ BY ID Client  */
+
 
 
 

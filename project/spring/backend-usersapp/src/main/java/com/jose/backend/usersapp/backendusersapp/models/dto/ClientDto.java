@@ -8,16 +8,16 @@ public class ClientDto {
     private long id;
     private String nom;
     private String prenom;
-    private String num_tel;
+    private String tel;
 	private LocalDateTime createdOn;
 	private LocalDateTime updatedOn;
     private boolean statut;
-    public ClientDto(long id, String nom, String prenom, String num_tel, LocalDateTime createdOn,
+    public ClientDto(long id, String nom, String prenom, String tel, LocalDateTime createdOn,
             LocalDateTime updatedOn, boolean statut) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.num_tel = num_tel;
+        this.tel = tel;
         this.createdOn = createdOn;
         this.updatedOn = updatedOn;
         this.statut = statut;
@@ -43,11 +43,11 @@ public class ClientDto {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-    public String getNum_tel() {
-        return num_tel;
+    public String getTel() {
+        return tel;
     }
-    public void setNum_tel(String num_tel) {
-        this.num_tel = num_tel;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
     public LocalDateTime getCreatedOn() {
         return createdOn;

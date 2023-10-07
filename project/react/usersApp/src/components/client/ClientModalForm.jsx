@@ -1,12 +1,10 @@
 import { useContext } from "react";
-import { ProduitContext } from "../../context/produit/ProduitContext";
-import { ProduitForm } from "./ProduitForm";
 
-export const ProduitModalForm = () =>{
+import { ClientForm } from "./ClientForm";
+import { ClientContext } from "../../context/client/ClientContext";
 
-    const { selectRegistre, handerFormClose, optionForm } = useContext(ProduitContext);
-
-
+export const ClientModalForm = () =>{
+    const { selectRegistre, handerFormClose, optionForm } = useContext(ClientContext);
 
     return(<>
     <div className="abrir-modal animacion fadeIn">
@@ -15,12 +13,12 @@ export const ProduitModalForm = () =>{
                 <div className="modal-content">
                     <div className="modal-header">
                         <h3 className="modal-title">
-                            { selectRegistre.id <= 0 ? 'Créer' : 'Modifier' } Produit
+                            { selectRegistre.id <= 0 ? 'Créer' : 'Modifier' } Client
                         </h3><hr/>
                     </div>
                     <div className="modal-body">
 
-                    <ProduitForm  selectRegistre={ selectRegistre } optionForm={ optionForm }/>
+                    <ClientForm  selectRegistre={ selectRegistre }  optionForm={ optionForm }/>
                   
                         
       
@@ -32,4 +30,4 @@ export const ProduitModalForm = () =>{
     </div>
 
     </>);
-}
+};

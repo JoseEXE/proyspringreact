@@ -41,9 +41,6 @@ public class ProduitController {
 
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody Produit produit, BindingResult result){
-        System.out.println("================================================="+produit);
-        System.out.println("================================================="+produit.getCatProduit().getId());
-        System.out.println("================================================="+produit.getUser().getId());
         if(result.hasErrors()){
             return validation(result);
         }
@@ -79,10 +76,10 @@ public class ProduitController {
     BindingResult result, @PathVariable Long id) {
    
         if(result.hasErrors()){
-        return validation(result);
+            return validation(result);
         }    
         Optional<ProduitDto> o = produitServiceImp.update(produit, id);
-        if(o.isPresent()){
+        if(o.isPresent()){          
             return ResponseEntity.status(HttpStatus.CREATED).body(o.orElseThrow());
         }
         return ResponseEntity.notFound().build();
@@ -109,8 +106,7 @@ public class ProduitController {
     
 
     /*==============================================================*/
-    /*|||||||||||||||||||||OPTIONNEL||||||||||||||||||||||||||||||||||*/
-    /*|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||---*/
+    /*|||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
     /*==============================================================*/
     /*5- READ BY ID Produit paginable */
     @GetMapping("/{id}")

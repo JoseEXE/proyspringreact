@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = 'http://localhost:8080/produits';
+const URL = 'http://localhost:8080/clients';
 
 const config = () => {
     return {
@@ -32,23 +32,33 @@ export const findAllPages = async(page = 0) =>{
     return null;
 }
 
-
-export const save = async({ catProduit, user, code, nom, description, prix, type_plat, statut }) =>{
+export const findByTel = async({ tel }) =>{
+ 
     try {
-        return await axios.post(URL, { catProduit , user, code, nom, description, prix, type_plat, statut }, config());
+        const response = await axios.post(`${URL}/recherche`, { tel }, config());
+        
+        return response;    
+        
+    } catch (error) {
+       console.error(error);
+    }
+    return null;
+}
+
+
+export const save = async({ nom, prenom, num_tel, statut }) =>{
+    try {
+        return await axios.post(URL, {  nom, prenom, num_tel, statut  }, config());
     } catch (error) {
        throw error; 
     }
 }
 
-export const update = async({ id, catProduit, user, code, nom, description, prix, type_plat, statut }) => {
+
+
+export const update = async({ id,  nom, prenom, num_tel, statut  }) => {
     try {
-
-
-
-        return await axios.put(`${URL}/${id}`, {catProduit, user, code, nom, description, prix, type_plat, statut }, config());
-
-        
+        return await axios.put(`${URL}/${id}`, { nom, prenom, num_tel, statut }, config());        
     } catch (error) {
         console.log(error);
        throw error;     

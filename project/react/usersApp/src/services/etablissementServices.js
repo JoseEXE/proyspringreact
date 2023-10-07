@@ -1,6 +1,4 @@
 import axios from "axios";
-
-
 const URL_ETABLISSEMENTS = 'http://localhost:8080/etablissements';
 
 const config = () => {
@@ -8,18 +6,14 @@ const config = () => {
         headers : {
             "Authorization" : sessionStorage.getItem('token'),
             "Content-Type" : "application/json",
-    
         }
-    
     }
 }
 
 export const findAll = async() =>{
- 
     try {
         const response = await axios.get(URL_ETABLISSEMENTS);
         return response;    
-        
     } catch (error) {
        console.error(error);
     }

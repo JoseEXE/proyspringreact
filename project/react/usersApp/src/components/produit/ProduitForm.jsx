@@ -21,9 +21,10 @@ export const ProduitForm = ({ selectRegistre, optionForm }) =>{
     if(useForm.catProduit == 0){
         errorsf.catProduit = "Vous devez sélectionner une catégorie de produit! ";
     }else{
+
       errorsf.catProduit = "";
     }
-    if(useForm.prix == 0){
+    if(useForm.prix == 0 || useForm.prix == ""){
         errorsf.prix = "Le champ prix est requis ! ";
     }
     else if(!num_pattern.test(useForm.prix)){
@@ -50,7 +51,6 @@ export const ProduitForm = ({ selectRegistre, optionForm }) =>{
 
   const onInputChange = ({ target }) => {
     const { name, value } = target;
-    console.log("name: "+name +" = "+"value: "+value);
     
     setUseForm({
             ...useForm,
@@ -80,6 +80,16 @@ export const ProduitForm = ({ selectRegistre, optionForm }) =>{
     if(errorsf.prix == '' &&  errorsf.catProduit == '' ){
       errorsf.prix = undefined;
       errorsf.catProduit = undefined;
+
+      let catprod = useForm.catProduit ;
+      useForm.catProduit =  {
+             "id": catprod
+         };
+      let user = useForm.user ;
+      useForm.user = {
+            "id": user
+      }
+
       handlerAddRegistre(useForm);
 
     }

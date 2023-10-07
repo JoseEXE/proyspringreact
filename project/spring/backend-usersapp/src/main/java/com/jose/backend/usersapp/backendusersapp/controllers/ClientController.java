@@ -64,6 +64,16 @@ public class ClientController {
     } 
     /*2.2- END READ Client pageable */
     /*==============================================================*/
+    /*2.3- READ Client */
+    @PostMapping("/recherche")
+    public List<ClientDto> listByTel(@RequestBody Client tel) {
+        System.out.println("Numero telephone: "+tel.getTel());
+        
+        List<ClientDto> o = clientServiceImp.findByTel(tel.getTel());
+        return o;
+    }
+    /*2.3- END READ Client */
+    /*==============================================================*/
     /*3- UPDATE Client */
 
     @PutMapping("/{id}")

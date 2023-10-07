@@ -61,8 +61,7 @@ public class ProduitServiceImp implements ProduitService{
     public Optional<ProduitDto> update(Produit produit, Long id) {
         Optional<Produit> o = produitRepository.findById(id);
         Produit produitOptional = null;
-        if(o.isPresent()){
-
+        if(o.isPresent()){    
 
             Produit produitDb = o.orElseThrow();
             produitDb.setCatProduit(produit.getCatProduit());
@@ -72,9 +71,19 @@ public class ProduitServiceImp implements ProduitService{
             produitDb.setDescription(produit.getDescription());
             produitDb.setPrix(produit.getPrix());
             produitDb.setType_plat(produit.getType_plat());
+            produitDb.setStatut(produit.isStatut());
 
             
             produitOptional = produitRepository.save(produitDb);
+            System.out.println("________________________________"+produitDb.getCatProduit());
+            System.out.println("________________________________"+produitDb.getUser());
+            System.out.println("________________________________"+produitDb.getCode());
+            System.out.println("________________________________"+produitDb.getNom());
+            System.out.println("________________________________"+produitDb.getDescription());
+            System.out.println("________________________________"+produitDb.getPrix());
+            System.out.println("________________________________"+produitDb.getType_plat());
+            System.out.println("________________________________"+produitDb.isStatut());
+
         }
         return Optional.ofNullable(DtoMapperProduct.builder().setProduit(produitOptional).build());
 

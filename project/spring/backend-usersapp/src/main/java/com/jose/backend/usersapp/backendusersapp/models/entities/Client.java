@@ -28,8 +28,8 @@ public class Client {
     private String prenom;
 
     @NotEmpty(message = "Le num telephonoque de client ne doit pas être vide...")
-    @Column(name="num_tel", length=100, nullable=false, unique=true )
-    private String num_tel;
+    @Column(name="tel", length=100, nullable=false, unique=true )
+    private String tel;
 
     @CreationTimestamp
 	private LocalDateTime createdOn;
@@ -42,12 +42,12 @@ public class Client {
 
     public Client(long id, @NotEmpty(message = "Le nom de client ne doit pas être vide...") String nom,
             @NotEmpty(message = "Le prenom de client ne doit pas être vide...") String prenom,
-            @NotEmpty(message = "Le num telephonoque de client ne doit pas être vide...") String num_tel,
+            @NotEmpty(message = "Le num telephonoque de client ne doit pas être vide...") String tel,
             LocalDateTime createdOn, LocalDateTime updatedOn, boolean statut) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.num_tel = num_tel;
+        this.tel = tel;
         this.createdOn = createdOn;
         this.updatedOn = updatedOn;
         this.statut = statut;
@@ -80,12 +80,12 @@ public class Client {
         this.prenom = prenom;
     }
 
-    public String getNum_tel() {
-        return num_tel;
+    public String getTel() {
+        return tel;
     }
 
-    public void setNum_tel(String num_tel) {
-        this.num_tel = num_tel;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public LocalDateTime getCreatedOn() {

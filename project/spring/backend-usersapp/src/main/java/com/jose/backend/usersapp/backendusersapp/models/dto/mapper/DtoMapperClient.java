@@ -32,7 +32,7 @@ public class DtoMapperClient {
             this.client.getId(),
             this.client.getNom(),
             this.client.getPrenom(),
-            this.client.getNum_tel(),
+            this.client.getTel(),
             this.client.getCreatedOn(),
             this.client.getUpdatedOn(),
             this.client.isStatut());

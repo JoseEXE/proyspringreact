@@ -91,7 +91,7 @@ const onCloseForm = () => {
     </>
     :
     <>
-       <CatProduitFormDetail useForm={useForm} handerFormClose={handerFormClose} onCloseForm={onCloseForm} />   
+    <CatProduitFormDetail useForm={useForm} handerFormClose={handerFormClose} onCloseForm={onCloseForm} />   
 
     
     </>);
