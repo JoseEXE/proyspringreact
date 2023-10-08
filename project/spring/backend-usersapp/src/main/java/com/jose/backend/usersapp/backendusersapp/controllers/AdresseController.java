@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jose.backend.usersapp.backendusersapp.models.dto.AdresseDto;
-
+import com.jose.backend.usersapp.backendusersapp.models.dto.ClientDto;
 import com.jose.backend.usersapp.backendusersapp.models.entities.Adresse;
-
+import com.jose.backend.usersapp.backendusersapp.models.entities.Client;
 import com.jose.backend.usersapp.backendusersapp.services.implementation.AdresseServiceImp;
 
 import jakarta.validation.Valid;
@@ -44,6 +44,9 @@ public class AdresseController {
 
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody Adresse adresse, BindingResult result){
+
+ 
+
         if(result.hasErrors()){
             return validation(result);
         }
@@ -58,6 +61,16 @@ public class AdresseController {
     public List<AdresseDto> list(){
         return adresseServiceImp.findAll();
     }
+
+    @PostMapping("/list")
+    public List<AdresseDto> findByClient(@RequestBody Client clientId) {
+        System.out.println("clientId.getId : "+clientId.getId());
+        List<AdresseDto> o = adresseServiceImp.findByClient(clientId);
+
+        return o;
+    }
+
+
     /*2.1- END READ AdresseClient */
     /*==============================================================*/
     /*==============================================================*/

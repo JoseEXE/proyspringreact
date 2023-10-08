@@ -22,6 +22,9 @@ export const ClientProvider = ({ children }) => {
         errors,
         handlerRecherche,
         registresRecherche,
+        handlerSelectClientAdresse,
+        VisibleregistresAdresseClient,
+
     } = useClient();
     
     return(
@@ -44,6 +47,8 @@ export const ClientProvider = ({ children }) => {
                 errors,
                 handlerRecherche,
                 registresRecherche,
+                handlerSelectClientAdresse,
+                VisibleregistresAdresseClient,
             }
         }>
                  {children}

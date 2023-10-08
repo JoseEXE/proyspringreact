@@ -6,6 +6,7 @@ import { ClientModalForm } from "../components/client/ClientModalForm";
 import { ClientList } from "../components/client/ClientList";
 import { Paginator } from "../components/Paginator";
 import { ClientListRe } from "../components/client/ClientListRe";
+import { AdressePage } from "./AdressePage";
 
 export const ClientPage = () => {
 
@@ -24,6 +25,8 @@ export const ClientPage = () => {
         handlerFormOpen,
         handlerRecherche,
         registresRecherche,
+        VisibleregistresAdresseClient,
+
     } = useContext(ClientContext);
 
     useEffect(()=>{
@@ -46,6 +49,7 @@ export const ClientPage = () => {
 
     const onListTout = () => {
         setUseRecherche(0);
+        handerFormClose()
 
       }
 
@@ -97,7 +101,12 @@ export const ClientPage = () => {
 
             }
     </div>
-
-
+            {
+            ( VisibleregistresAdresseClient != 0 )
+            ?
+            <AdressePage clientId={ VisibleregistresAdresseClient }/>
+            :
+            <div className="alert alert-warning">Aucun adresse n'a été trouvé...</div>
+            }
     </>);
 };

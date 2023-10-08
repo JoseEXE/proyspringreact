@@ -1,12 +1,13 @@
 import { useContext } from "react";
-import { CatProduitContext } from "../../context/catproduit/CatProduitContext";
-import { CatProduitForm } from "./CatProduitForm";
+import { AdresseContext } from "../../context/adresse/AdresseContext";
+import { AdresseForm } from "./AdresseForm";
 
-export const CatProduitModalForm = () =>{
+export const AdresseModalForm = () =>{
 
-    const { selectRegistre, handerFormClose, optionForm } = useContext(CatProduitContext);
+    const { selectRegistre, handerFormClose, optionForm } = useContext(AdresseContext);
 
-    
+
+
     return(<>
     <div className="abrir-modal animacion fadeIn">
         <div className="modal" style={ {display: 'block'} } tabIndex="-1">
@@ -14,12 +15,12 @@ export const CatProduitModalForm = () =>{
                 <div className="modal-content">
                     <div className="modal-header">
                         <h3 className="modal-title">
-                            { selectRegistre.id <= 0 ? 'Créer' : 'Modifier' } Catègorie Produit
+                            { selectRegistre.id <= 0 ? 'Créer' : 'Modifier' } Adresse Client
                         </h3><hr/>
                     </div>
                     <div className="modal-body">
 
-                    <CatProduitForm  selectRegistre={ selectRegistre } handerFormClose={ handerFormClose } optionForm={ optionForm }/>
+                    <AdresseForm  selectRegistre={ selectRegistre } handerFormClose={ handerFormClose } optionForm={ optionForm }/>
                   
                         
       
@@ -29,7 +30,5 @@ export const CatProduitModalForm = () =>{
             </div>
         </div>
     </div>
-
     </>);
-
 }

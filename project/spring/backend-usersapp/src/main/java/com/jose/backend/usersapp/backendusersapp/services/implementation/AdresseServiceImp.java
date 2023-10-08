@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jose.backend.usersapp.backendusersapp.models.dto.AdresseDto;
 import com.jose.backend.usersapp.backendusersapp.models.dto.mapper.DtoMapperAdresse;
 import com.jose.backend.usersapp.backendusersapp.models.entities.Adresse;
+import com.jose.backend.usersapp.backendusersapp.models.entities.Client;
 import com.jose.backend.usersapp.backendusersapp.repositories.AdresseRepository;
 import com.jose.backend.usersapp.backendusersapp.services.AdresseService;
 
@@ -26,6 +27,14 @@ public class AdresseServiceImp implements AdresseService{
     @Override
     @Transactional
     public AdresseDto save(Adresse adresse) {
+        System.out.println("Llega adresse : "+adresse);
+        System.out.println("Llega adresse adresse.getClient().getId() : "+adresse.getClient().getId());
+        System.out.println("Llega adresse adresse.getRue() : "+adresse.getRue());
+        System.out.println("Llega adresse getCod_postal() : "+adresse.getCod_postal());
+        System.out.println("Llega adresse getVille() : "+adresse.getVille());
+        System.out.println("Llega adresse getComplement() : "+adresse.getComplement());
+        System.out.println("Llega adresse getId(): "+adresse.getId());
+        
         return DtoMapperAdresse.builder().setAdresse(adresseRepository.save(adresse)).build();
     }
      /*1- END CREATE Adresse  */
@@ -37,13 +46,22 @@ public class AdresseServiceImp implements AdresseService{
     @Transactional(readOnly = true)
     public List<AdresseDto> findAll() {
         List<Adresse> adresses = (List<Adresse>) adresseRepository.findAll();
-
         return adresses
                     .stream()
                     .map(u -> DtoMapperAdresse.builder().setAdresse(u).build())
                     .collect(Collectors.toList());  
     }
     /* 2.1- END READ Adresse  */
+    @Override
+    public List<AdresseDto> findByClient(Client clientId) {
+    List<Adresse>  adresses =  adresseRepository.findByClient(clientId);
+        System.out.println("adresses N0: "+adresses.size());
+        return adresses
+                    .stream()
+                    .map(u -> DtoMapperAdresse.builder().setAdresse(u).build())
+                    .collect(Collectors.toList());  
+    }
+
     /*=======================================================*/
     /* 2.2- READ Adresse pageable */
     @Override
@@ -101,6 +119,8 @@ public class AdresseServiceImp implements AdresseService{
             return adresseRepository.findById(id).map(u -> DtoMapperAdresse.builder().setAdresse(u).build());
     }
     /*5- END READ BY ID Adresse  */
+
+   
 
 
 

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.jose.backend.usersapp.backendusersapp.models.dto.AdresseDto;
 import com.jose.backend.usersapp.backendusersapp.models.entities.Adresse;
+import com.jose.backend.usersapp.backendusersapp.models.entities.Client;
 
 
 public interface AdresseService {
@@ -21,6 +22,8 @@ public interface AdresseService {
     AdresseDto save(Adresse adresse);
 
     Optional<AdresseDto> update(Adresse adresse, Long id);
+
+    List<AdresseDto> findByClient(Client clientId);
 
     void remove(Long id);
 }

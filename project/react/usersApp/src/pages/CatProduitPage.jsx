@@ -9,7 +9,7 @@ import { Paginator } from "../components/Paginator";
 export const CatProduitPage = () => {
     const { page } = useParams();
     const { login } = useContext(AuthContext);
-    console.log("page: "+page);
+
 
     const {
         registres,

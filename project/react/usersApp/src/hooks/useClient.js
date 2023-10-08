@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { clientReducer } from "../reducer/clientReducer";
 import { findAllPages, findByTel, save, update } from "../services/clientService";
+import { AdresseContext } from "../context/adresse/AdresseContext";
+import { adresseReducer } from "../reducer/adresseReducer";
 
 const initListe = [];
 
@@ -29,15 +31,18 @@ export const useClient = () =>{
 
     /* useContext */
     const { login, handlerLogout } = useContext(AuthContext);
+    //const { getRegistresAdresse } = useContext(AdresseContext)
     /* useState */
     const [selectRegistre, setSelectRegistre] = useState(initEstructure);
     const [errors, setErrors] = useState(initErrors);
     const [visibleForm, setVisibleForm] = useState(false); 
     const [optionForm, setOptionForm ] = useState("");
+    const [VisibleregistresAdresseClient, setVisibleregistresAdresseClient] = useState(0); 
     /* useReducer */
     const [registres, dispatch] = useReducer(clientReducer, initListe);
     const [registresRecherche, dispatchRecherche] = useReducer(clientReducer, initListe);
     const [paginator, dispatchPaginator] = useReducer(clientReducer, iniPaginator);
+ 
     /* === */
     const navigation = useNavigate();
 
@@ -46,6 +51,7 @@ export const useClient = () =>{
     const getRegistres = async(page=0, tel) =>{ 
       
             const result = await findAllPages(page); //findAll()
+           
             dispatch({
                 type: 'loadingClient',
                 payload: result.data,
@@ -141,7 +147,7 @@ export const useClient = () =>{
             tel : numTel,
         }
 
-
+        setVisibleregistresAdresseClient(0);
         getRegistresRecherche(tel);
 
     }
@@ -152,16 +158,20 @@ export const useClient = () =>{
         setVisibleForm(true);
     }
 
+    const handlerSelectClientAdresse = (clientSelected) =>{
+        setVisibleregistresAdresseClient(clientSelected);
+    }
+
     const handerFormClose = () =>{
         setVisibleForm(false);
         setSelectRegistre(initEstructure);
         setErrors({});
+        setVisibleregistresAdresseClient(0);
         getRegistres();      
     }
 
     
     const handlerFormOpen = () =>{
-        console.log("Entra handlerFormOpen : =================== ");
         setOptionForm('new');
         setVisibleForm(true);
     }
@@ -185,5 +195,7 @@ export const useClient = () =>{
         errors,
         handlerRecherche,
         registresRecherche,
+        handlerSelectClientAdresse,
+        VisibleregistresAdresseClient,
     }
 }

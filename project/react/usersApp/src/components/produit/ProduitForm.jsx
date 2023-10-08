@@ -82,12 +82,14 @@ export const ProduitForm = ({ selectRegistre, optionForm }) =>{
       errorsf.catProduit = undefined;
 
       let catprod = useForm.catProduit ;
+      useForm.catProduit = "";
       useForm.catProduit =  {
              "id": catprod
          };
-      let user = useForm.user ;
+  
+      useForm.user ="";
       useForm.user = {
-            "id": user
+            "id": login.user.id
       }
 
       handlerAddRegistre(useForm);
