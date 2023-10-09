@@ -71,10 +71,8 @@ export const NavBar = () => {
                     </a>
                 <ul className="dropdown-menu dropdown-menu-dark">
                     <li>
-                        <NavLink  className="nav-link" to="/clients">Clients </NavLink> 
+                        <NavLink  className="nav-link" to="/clients">Créer commande </NavLink> 
                     </li>
-                    <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item" href="#">Créer commandes</a></li>
                     <li><hr className="dropdown-divider" /></li>
                     <li><a className="dropdown-item" href="#">Commandes en cours</a></li>
                 </ul>
@@ -110,7 +108,13 @@ export const NavBar = () => {
                 <div className="collapse navbar-collapse justify-content-end " id="navbarNav">
                 
                 
-                       
+
+
+
+
+
+
+                      
     <div className="text-info text-ms col-sm-4  d-flex p-2">          
         <div className="col-sm-2  align-self-center my-1 ">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
@@ -132,6 +136,8 @@ export const NavBar = () => {
   <path fillRule="evenodd" d="M12.5 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5Z"/>
 </svg>   Logout
                     </button>
+                     &nbsp; <button class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-cart4"></i></button>
+
                 </div>
                 </div>
             </div>

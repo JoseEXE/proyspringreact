@@ -4,13 +4,13 @@ import { AuthContext } from "../../auth/context/AuthContext";
 
 export const AdresseRows = ({ registre }) => {
 
-    const { handlerSelectRegistre } = useContext(AdresseContext);
+    const { handlerSelectRegistre, handlerSelectAdresse } = useContext(AdresseContext);
     const { login } = useContext(AuthContext);
     let option = "";
 
 
     return(<>
-      <td>{ registre.id }</td>
+      <td><input className="form-check-input" type="radio" name="adresseCheck" id="adresseCheck" value={ registre.id } onClick={() => handlerSelectAdresse(registre.id) }></input></td>
              <td>{ registre.rue }</td>
             <td>{ registre.cod_postal }</td>
             <td>{ registre.ville }</td>

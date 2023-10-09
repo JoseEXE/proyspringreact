@@ -37,6 +37,7 @@ export const useAdresse = () =>{
     const [visibleForm, setVisibleForm] = useState(false); 
     const [optionForm, setOptionForm ] = useState("");
     const [clientActive, setClientActive ] = useState(0);
+    const [adresseActive, setAdresseActive ] = useState(0);
     const navigation = useNavigate();
 
     const [registres, dispatch] = useReducer(adresseReducer, initListe);
@@ -54,6 +55,7 @@ export const useAdresse = () =>{
             type: 'loading',
             payload: result.data ,
         });
+        setAdresseActive(0);
     }
     /*END READ Registers */
     /*======================================================*/
@@ -122,6 +124,7 @@ export const useAdresse = () =>{
         }else{
             setOptionForm(option);
         }
+        setAdresseActive(0);
         setSelectRegistre({...registre});
         setVisibleForm(true);
     }
@@ -130,6 +133,7 @@ export const useAdresse = () =>{
         setVisibleForm(false);
         setSelectRegistre(initEstructure);
         setErrors({});
+        setAdresseActive(0);
         getRegistresAdresse();
         
     }
@@ -137,6 +141,7 @@ export const useAdresse = () =>{
     
     const handlerFormOpen = () =>{
         setOptionForm('new');
+        setAdresseActive(0);
         setVisibleForm(true);
     }
 
@@ -144,6 +149,10 @@ export const useAdresse = () =>{
 
     const handlerIdClientActive = (clientId) =>{
         setClientActive(clientId);
+    }
+
+    const handlerSelectAdresse = ( adresseId) => {
+        setAdresseActive(adresseId)
     }
 
 
@@ -165,6 +174,8 @@ export const useAdresse = () =>{
         errors,
         handlerIdClientActive,
         clientActive,
+        handlerSelectAdresse,
+        adresseActive,
     }
 
 

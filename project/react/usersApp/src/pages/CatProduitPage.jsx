@@ -29,7 +29,7 @@ export const CatProduitPage = () => {
     return(<>
         { !visibleForm || 
         <CatProduitModalForm />
-    }
+        }
 
         <div className="container my-4 border p-4">
             <h3>Catègories Produits</h3><hr />
@@ -40,7 +40,7 @@ export const CatProduitPage = () => {
                 
             </div>
             <hr />
-            {             
+                {             
                     (registres?.length === 0)
                     ? <div className="alert alert-warning">Il n'y a pas catègories Produits enregistré...</div> 
                     : 

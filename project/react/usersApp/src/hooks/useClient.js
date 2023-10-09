@@ -7,6 +7,10 @@ import { findAllPages, findByTel, save, update } from "../services/clientService
 import { AdresseContext } from "../context/adresse/AdresseContext";
 import { adresseReducer } from "../reducer/adresseReducer";
 
+
+
+
+
 const initListe = [];
 
 const iniPaginator = {};
@@ -197,5 +201,6 @@ export const useClient = () =>{
         registresRecherche,
         handlerSelectClientAdresse,
         VisibleregistresAdresseClient,
+
     }
 }

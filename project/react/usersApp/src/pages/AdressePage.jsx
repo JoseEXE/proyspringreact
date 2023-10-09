@@ -32,7 +32,7 @@ export const AdressePage = ({ clientId }) =>{
         <AdresseModalForm />
     }
 
-        <div className="container my-4 border p-4">
+        <div className="container my-1 border p-1">
             <h5>Adresses Client</h5><hr />
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end">
 

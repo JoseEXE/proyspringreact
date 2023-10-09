@@ -4,8 +4,9 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,13 +23,28 @@ public class Commande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne( cascade = CascadeType.ALL)
+    @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name="id_client")
     private Client client;
 
-    @ManyToOne( cascade = CascadeType.ALL)
+    @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name="id_user")
     private User user;
+
+
+
+    @ManyToOne( fetch = FetchType.EAGER)
+    @JoinColumn(name="id_adresse")
+    private Adresse adresse;
+
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
 
     private String commentaire;
     private Double totalHl;
@@ -44,6 +60,21 @@ public class Commande {
         this.id = id;
         this.client = client;
         this.user = user;
+        this.commentaire = commentaire;
+        this.totalHl = totalHl;
+        this.total = total;
+        this.type_paiement = type_paiement;
+        this.etat = etat;
+        this.createdOn = createdOn;
+    }
+
+    
+    public Commande(long id, Client client, User user, Adresse adresse, String commentaire, Double totalHl,
+            Double total, String type_paiement, String etat, LocalDateTime createdOn) {
+        this.id = id;
+        this.client = client;
+        this.user = user;
+        this.adresse = adresse;
         this.commentaire = commentaire;
         this.totalHl = totalHl;
         this.total = total;

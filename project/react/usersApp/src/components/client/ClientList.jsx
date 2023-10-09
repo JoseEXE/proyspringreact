@@ -15,7 +15,7 @@ export const ClientList = () => {
         <table className="table table-hover table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th></th>
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th className="text-center">Numéro Téléphone</th>

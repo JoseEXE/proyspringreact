@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.BeanUtils;
 
+import com.jose.backend.usersapp.backendusersapp.models.entities.Adresse;
 import com.jose.backend.usersapp.backendusersapp.models.entities.Client;
 import com.jose.backend.usersapp.backendusersapp.models.entities.User;
 
@@ -14,6 +15,7 @@ public class CommandeDto {
     private long id;
     private Client client;
     private User user;
+    private Adresse adresse;
     private String commentaire;
     private Double totalHl;
     private Double total;
@@ -33,6 +35,27 @@ public class CommandeDto {
         this.etat = etat;
         this.createdOn = createdOn;
     }
+
+
+
+    
+    public CommandeDto(long id, Client client, User user, Adresse adresse, String commentaire, Double totalHl,
+            Double total, String type_paiement, String etat, LocalDateTime createdOn) {
+        this.id = id;
+        this.client = client;
+        this.user = user;
+        this.adresse = adresse;
+        this.commentaire = commentaire;
+        this.totalHl = totalHl;
+        this.total = total;
+        this.type_paiement = type_paiement;
+        this.etat = etat;
+        this.createdOn = createdOn;
+    }
+
+
+
+
     public CommandeDto() {
     }
     public long getId() {
@@ -40,6 +63,12 @@ public class CommandeDto {
     }
     public void setId(long id) {
         this.id = id;
+    }
+    public Adresse getAdresse() {
+        return adresse;
+    }
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
     }
     public Client getClient() {
         return client;

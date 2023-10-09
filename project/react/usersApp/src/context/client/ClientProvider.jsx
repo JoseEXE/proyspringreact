@@ -25,6 +25,7 @@ export const ClientProvider = ({ children }) => {
         handlerSelectClientAdresse,
         VisibleregistresAdresseClient,
 
+
     } = useClient();
     
     return(
@@ -49,6 +50,7 @@ export const ClientProvider = ({ children }) => {
                 registresRecherche,
                 handlerSelectClientAdresse,
                 VisibleregistresAdresseClient,
+      
             }
         }>
                  {children}

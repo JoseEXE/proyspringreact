@@ -14,7 +14,7 @@ export const AdresseList = () =>{
     <table className="table table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th></th>
                         <th>Rue</th>
                         <th>Cod Postal</th>
                         <th>Ville</th>

@@ -19,6 +19,9 @@ export const AdresseProvider = ({ children }) =>{
         errors,
         handlerIdClientActive,
         clientActive,
+        handlerSelectAdresse,
+        adresseActive,
+
     } = useAdresse();
 
     return(<AdresseContext.Provider value={ 
@@ -39,6 +42,8 @@ export const AdresseProvider = ({ children }) =>{
             errors,
             handlerIdClientActive,
             clientActive,
+            handlerSelectAdresse,
+            adresseActive,
         }
     }>
         {children}

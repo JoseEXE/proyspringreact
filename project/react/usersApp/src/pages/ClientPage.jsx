@@ -7,6 +7,9 @@ import { ClientList } from "../components/client/ClientList";
 import { Paginator } from "../components/Paginator";
 import { ClientListRe } from "../components/client/ClientListRe";
 import { AdressePage } from "./AdressePage";
+import { AdresseContext } from "../context/adresse/AdresseContext";
+import Swal from "sweetalert2";
+import { CommandeForm } from "../components/commande/CommandeForm";
 
 export const ClientPage = () => {
 
@@ -16,6 +19,8 @@ export const ClientPage = () => {
 
     const { page } = useParams();
     const { login } = useContext(AuthContext);
+
+    const { adresseActive } = useContext(AdresseContext);
 
     const {
         registres,
@@ -28,6 +33,21 @@ export const ClientPage = () => {
         VisibleregistresAdresseClient,
 
     } = useContext(ClientContext);
+
+    const onCreationCommande = () => {
+
+
+        if(VisibleregistresAdresseClient === 0 || adresseActive === 0){
+            Swal.fire(
+                'Error Création de commande!.',
+                'Vous devez sélectionner un utilisateur et son adresse!',
+                'error'
+                )
+                //handerFormClose();
+                //navigation('/clients');
+            }
+
+    }
 
     useEffect(()=>{
         getRegistres(page);
@@ -51,7 +71,9 @@ export const ClientPage = () => {
         setUseRecherche(0);
         handerFormClose()
 
-      }
+    }
+
+    
 
 
     return(<>
@@ -59,8 +81,10 @@ export const ClientPage = () => {
         <ClientModalForm />
     }
 
-        <div className="container my-4 border p-4">
-            <h3>Clients</h3><hr />
+
+        <div className="container my-1 border p-1">
+            <h3>Créer commande</h3><hr />
+            <h5>Client</h5>
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
             <button className="btn btn-primary btn-sm " type="submit" onClick={ onListTout }><i class="bi bi-list"></i> &nbsp; Lister tout  </button>
 
@@ -100,7 +124,8 @@ export const ClientPage = () => {
             
 
             }
-    </div>
+        </div>
+        
             {
             ( VisibleregistresAdresseClient != 0 )
             ?
@@ -108,5 +133,16 @@ export const ClientPage = () => {
             :
             <div className="alert alert-warning">Aucun adresse n'a été trouvé...</div>
             }
+            
+            {
+            ( VisibleregistresAdresseClient != 0 && adresseActive != 0)
+            ?<>
+            <CommandeForm />
+            </>
+            :
+                <>
+                <div className="alert alert-warning">Pour continuer la commande, vous devez sélectionner un client et une adresse !</div>
+                <br/><br/><br/><br/><br/><br/>
+                </>}
     </>);
 };

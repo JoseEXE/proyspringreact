@@ -41,7 +41,20 @@ public class CommandeController {
 
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody Commande commande, BindingResult result){
+        System.out.println("===================SAVE COMMANDE==================");
+        System.out.println("commande.getId()"+commande.getId());
+        System.out.println("client: "+commande.getClient().getId());
+        System.out.println("user: "+commande.getUser().getId());
+        System.out.println("adresse: "+commande.getAdresse().getId());
+        System.out.println("commentaire: "+commande.getCommentaire());
+        System.out.println("totalHl: "+commande.getTotalHl());
+        System.out.println("total: "+commande.getTotal());
+        System.out.println("type_paiement: "+commande.getType_paiement());
+        System.out.println("etat: "+commande.getEtat());
+
+
         if(result.hasErrors()){
+            System.out.println("===================SERRORODE==================");
             return validation(result);
         }
          return ResponseEntity.status(HttpStatus.CREATED).body(commandeServiceImp.save(commande));
